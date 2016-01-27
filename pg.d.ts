@@ -59,10 +59,10 @@ declare module pg {
     text: string;
     values: any[];
 
-    on(event: "row", listener: (row: any, result: ResultBuilder) => void);
-    on(event: "end", listener: (result: ResultBuilder) => void);
-    on(event: "error", listener: (err: Error) => void);
-    on(event: string, listener: Function);
+    on(event: "row", listener: (row: any, result: ResultBuilder) => void): EventEmitter;
+    on(event: "end", listener: (result: ResultBuilder) => void): EventEmitter;
+    on(event: "error", listener: (err: Error) => void): EventEmitter;
+    on(event: string, listener: Function): EventEmitter;
   }
 
   export class Client extends EventEmitter {
@@ -88,11 +88,11 @@ declare module pg {
     pauseDrain(): void;
     resumeDrain(): void;
 
-    on(event: "drain", listener: () => void);
-    on(event: "error", listener: (err: Error) => void);
-    on(event: "notification", listener: (message: any) => void);
-    on(event: "notice", listener: (message: any) => void);
-    on(event: string, listener: Function);
+    on(event: "drain", listener: () => void): EventEmitter;
+    on(event: "error", listener: (err: Error) => void): EventEmitter;
+    on(event: "notification", listener: (message: any) => void): EventEmitter;
+    on(event: "notice", listener: (message: any) => void): EventEmitter;
+    on(event: string, listener: Function): EventEmitter;
   }
 
   export function connect(connString: string, callback: ConnectCallback): void;
