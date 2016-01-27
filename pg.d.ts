@@ -1,5 +1,5 @@
 import { EventEmitter } from "events"
-import { WritableStream, ReadableStream } from "stream"
+import { Writable, Readable } from "stream"
 
 declare module pg {
 
@@ -55,26 +55,17 @@ declare module pg {
     addRow(row: any): void;
   }
 
-  export class Query implements EventEmitter {
+  export class Query extends EventEmitter {
     text: string;
     values: any[];
 
     on(event: "row", listener: (row: any, result: ResultBuilder) => void);
     on(event: "end", listener: (result: ResultBuilder) => void);
     on(event: "error", listener: (err: Error) => void);
-
-    // EventEmitter interface
-    addListener(event: string, listener: Function);
     on(event: string, listener: Function);
-    once(event: string, listener: Function): void;
-    removeListener(event: string, listener: Function): void;
-    removeAllListener(event: string): void;
-    setMaxListeners(n: number): void;
-    listeners(event: string): { Function; }[];
-    emit(event: string, arg1?: any, arg2?: any): void;
   }
 
-  export class Client implements EventEmitter {
+  export class Client extends EventEmitter {
     constructor(connString: string);
     constructor(config: Config);
 
@@ -97,20 +88,11 @@ declare module pg {
     pauseDrain(): void;
     resumeDrain(): void;
 
-    on(event: "drain", listener: () => void): Client;
-    on(event: "error", listener: (err: Error) => void): Client;
-    on(event: "notification", listener: (message: any) => void): Client;
-    on(event: "notice", listener: (message: any) => void): Client;
-
-    // EventEmitter interface
-    addListener(event: string, listener: Function);
+    on(event: "drain", listener: () => void);
+    on(event: "error", listener: (err: Error) => void);
+    on(event: "notification", listener: (message: any) => void);
+    on(event: "notice", listener: (message: any) => void);
     on(event: string, listener: Function);
-    once(event: string, listener: Function): void;
-    removeListener(event: string, listener: Function): void;
-    removeAllListener(event: string): void;
-    setMaxListeners(n: number): void;
-    listeners(event: string): { Function; }[];
-    emit(event: string, arg1?: any, arg2?: any): void;
   }
 
   export function connect(connString: string, callback: ConnectCallback): void;

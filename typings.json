@@ -15,6 +15,6 @@
   "dependencies": {},
   "devDependencies": {},
   "ambientDependencies": {
-    "node": "github:DefinitelyTyped/DefinitelyTyped/node/node-0.8.8.d.ts#093a2b32d420e2cddbe9e8bc44a6a2fc14b3cbe3"
+    "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#1c56e368e17bb28ca57577250624ca5bd561aa81"
   }
 }
