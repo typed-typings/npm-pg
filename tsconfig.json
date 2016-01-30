@@ -13,6 +13,7 @@
 		"pg.d.ts",
 		"tests/client.ts",
 		"tests/common.ts",
+		"tests/defaults.ts",
 		"tests/query.ts"
 	],
 	"formatCodeOptions": {

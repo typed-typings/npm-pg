@@ -35,9 +35,9 @@ declare module pg {
     database?: string;
     password?: string;
     port?: number;
+    poolSize?: number;
     rows?: number;
     binary?: boolean;
-    poolSize?: number;
     poolIdleTimeout?: number;
     reapIntervalMillis?: number;
     poolLog?: boolean;
@@ -53,6 +53,23 @@ declare module pg {
     oid: number;
     rows: any[];
     addRow(row: any): void;
+  }
+
+  export interface PoolSet {
+    all: { [key: string]: Pool },
+    getOrCreate(config: Config): Pool,
+    getOrCreate(connString: string): Pool
+  }
+
+  //extends npm generic-pool
+  export interface Pool {
+    name: string,
+    max: number,
+    idleTimeoutMillis: number,
+    reapIntervalMillis: number,
+    log: boolean,
+    create(cb: ClientConnectCallback): void,
+    destroy(client: Client): void
   }
 
   export class Query extends EventEmitter {
@@ -95,6 +112,8 @@ declare module pg {
     on(event: string, listener: Function): EventEmitter;
   }
 
+  export var defaults: Config;
+  export var pools: Pools;
   export function connect(connString: string, callback: ConnectCallback): void;
   export function end(): void;
   export function cancel(config: Config, client: Client, query: Query)
