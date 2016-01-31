@@ -1,6 +1,5 @@
 import * as pg from "../pg.d"
 
-pg.defaults.poolSize = 25;
-
-var pool = pg.pools.all['abc']
-var size = pool.getPoolSize()
+pg.defaults.poolSize = 25
+pg.defaults.host = ""
+pg.defaults.user = ""

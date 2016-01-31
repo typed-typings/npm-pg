@@ -12,7 +12,9 @@
   "description": "The TypeScript definition for pg (brianc/node-postgres)",
   "url": "https://github.com/goenning/typed-pg/",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "generic-pool": "github:goenning/typed-generic-pool"
+  },
   "devDependencies": {},
   "ambientDependencies": {
     "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#1c56e368e17bb28ca57577250624ca5bd561aa81"
