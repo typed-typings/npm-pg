@@ -1,6 +1,6 @@
 {
   "name": "pg",
-  "main": "pg.d.ts",
+  "main": "index.d.ts",
   "author": "goenning <oenning.ti@gmail.com>",
   "keywords": [
     "TypeScript",
