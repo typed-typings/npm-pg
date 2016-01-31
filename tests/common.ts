@@ -1,4 +1,4 @@
-import * as pg from "../pg.d"
+import * as pg from "../index.d"
 
 pg.connect("postgres://...", (err, client, done) => {
   if (err) {

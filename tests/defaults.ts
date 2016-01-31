@@ -1,4 +1,4 @@
-import * as pg from "../pg.d"
+import * as pg from "../index.d"
 
 pg.defaults.poolSize = 25
 pg.defaults.host = ""
