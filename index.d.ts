@@ -74,10 +74,10 @@ export class Query extends EventEmitter {
   text: string;
   values: any[];
 
-  on(event: "row", listener: (row: any, result: ResultBuilder) => void): EventEmitter;
-  on(event: "end", listener: (result: ResultBuilder) => void): EventEmitter;
-  on(event: "error", listener: (err: Error) => void): EventEmitter;
-  on(event: string, listener: Function): EventEmitter;
+  on(event: "row", listener: (row: any, result: ResultBuilder) => void): this;
+  on(event: "end", listener: (result: ResultBuilder) => void): this;
+  on(event: "error", listener: (err: Error) => void): this;
+  on(event: string, listener: Function): this;
 }
 
 export class Client extends EventEmitter {
@@ -103,11 +103,11 @@ export class Client extends EventEmitter {
   pauseDrain(): void;
   resumeDrain(): void;
 
-  on(event: "drain", listener: () => void): EventEmitter;
-  on(event: "error", listener: (err: Error) => void): EventEmitter;
-  on(event: "notification", listener: (message: any) => void): EventEmitter;
-  on(event: "notice", listener: (message: any) => void): EventEmitter;
-  on(event: string, listener: Function): EventEmitter;
+  on(event: "drain", listener: () => void): this;
+  on(event: "error", listener: (err: Error) => void): this;
+  on(event: "notification", listener: (message: any) => void): this;
+  on(event: "notice", listener: (message: any) => void): this;
+  on(event: string, listener: Function): this;
 }
 
 export var defaults: Config;
