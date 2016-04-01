@@ -44,7 +44,7 @@ interface Config {
   ssl?: boolean;
   application_name?: string;
   fallback_application_name?: string;
-  parseInputDatesAsUTC?: bool;
+  parseInputDatesAsUTC?: boolean;
 }
 
 interface ResultBuilder {
