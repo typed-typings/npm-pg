@@ -62,13 +62,13 @@ export interface PoolSet {
 }
 
 export interface Pool extends GenericPool {
-  name: string,
-  max: number,
-  idleTimeoutMillis: number,
-  reapIntervalMillis: number,
-  log: boolean,
-  create(cb: ClientConnectCallback): void,
-  destroy(client: Client): void
+  name: string;
+  max: number;
+  idleTimeoutMillis: number;
+  reapIntervalMillis: number;
+  log: boolean;
+  create(cb: ClientConnectCallback): void;
+  destroy(client: Client): void;
 }
 
 export class Query extends EventEmitter {
@@ -98,8 +98,8 @@ export class Client extends EventEmitter {
   query(text: string, callback: QueryCallback): Query;
   query(text: string, values: any[], callback: QueryCallback): Query;
 
-  connect(callback: ClientConnectCallback);
-  end();
+  connect(callback: ClientConnectCallback): void;
+  end(): void;
 
   pauseDrain(): void;
   resumeDrain(): void;
@@ -115,4 +115,4 @@ export var defaults: Config;
 export var pools: PoolSet;
 export function connect(connString: string, callback: ConnectCallback): void;
 export function end(): void;
-export function cancel(config: Config, client: Client, query: Query)
+export function cancel(config: Config, client: Client, query: Query): void;
