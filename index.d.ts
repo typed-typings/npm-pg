@@ -1,6 +1,6 @@
 import { EventEmitter } from "events"
 import { Writable, Readable } from "stream"
-import { Pool as GenericPool } from "generic-pool"
+import { Pool } from "generic-pool"
 
 interface QueryCallback {
   (err: Error, result: ResultSet): void;
@@ -56,12 +56,12 @@ interface ResultBuilder {
 }
 
 export interface PoolSet {
-  all: { [key: string]: Pool },
-  getOrCreate(config: Config): Pool,
-  getOrCreate(connString: string): Pool
+  all: { [key: string]: ClientPool },
+  getOrCreate(config: Config): ClientPool,
+  getOrCreate(connString: string): ClientPool
 }
 
-export interface Pool extends GenericPool {
+export interface ClientPool extends Pool<Client> {
   name: string;
   max: number;
   idleTimeoutMillis: number;

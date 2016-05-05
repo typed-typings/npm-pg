@@ -13,10 +13,10 @@
   "url": "https://github.com/goenning/typed-pg/",
   "license": "MIT",
   "dependencies": {
-    "generic-pool": "github:goenning/typed-generic-pool"
+    "generic-pool": "github:goenning/typed-generic-pool#80a2ed5ef4cdf294d76bb159a6727217ab6d2832"
   },
   "devDependencies": {},
   "ambientDependencies": {
-    "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#1c56e368e17bb28ca57577250624ca5bd561aa81"
+    "node": "registry:dt/node#4.0.0+20160330064709"
   }
 }
