@@ -1,6 +1,7 @@
 import { EventEmitter } from "events"
 import { Writable, Readable } from "stream"
 import { Pool } from "generic-pool"
+import { TlsOptions } from "tls"
 
 interface QueryCallback {
   (err: Error, result: ResultSet): void;
@@ -41,7 +42,7 @@ interface Config {
   reapIntervalMillis?: number;
   poolLog?: boolean;
   client_encoding?: string;
-  ssl?: boolean;
+  ssl?: TlsOptions;
   application_name?: string;
   fallback_application_name?: string;
   parseInputDatesAsUTC?: boolean;
