@@ -16,7 +16,7 @@
     "generic-pool": "github:goenning/typed-generic-pool#b4170bc80dae5cddda5568d2f35d6a39ce2d5bf0"
   },
   "devDependencies": {},
-  "ambientDependencies": {
+  "globalDependencies": {
     "node": "registry:dt/node#4.0.0+20160330064709"
   }
 }
