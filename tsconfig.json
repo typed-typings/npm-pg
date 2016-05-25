@@ -4,12 +4,12 @@
 		"noEmit": true
 	},
 	"filesGlob": [
-		"typings/main.d.ts",
+		"typings/index.d.ts",
 		"index.d.ts",
 		"tests/*.ts"
 	],
 	"files": [
-		"typings/main.d.ts",
+		"typings/index.d.ts",
 		"index.d.ts",
 		"tests/client.ts",
 		"tests/common.ts",
