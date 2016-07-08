@@ -114,6 +114,16 @@ export class Client extends EventEmitter {
 
 export var defaults: Config;
 export var pools: PoolSet;
+export namespace types {
+  /**
+   * returns a function used to convert a specific type (specified by oid) into a result javascript type
+   * note: the oid can be obtained via the following sql query:
+   * `SELECT oid FROM pg_type WHERE typname = 'TYPE_NAME_HERE';`
+   */
+  export function getTypeParser(oid: number, format?: 'text' | 'binary');
+  export function setTypeParser(oid: number, format: 'text' | 'binary', parseFn: (value: string) => any);
+  export function setTypeParser(oid: number, parseFn: (value: string) => any);
+}
 export function connect(connString: string, callback: ConnectCallback): void;
 export function end(): void;
 export function cancel(config: Config, client: Client, query: Query): void;
