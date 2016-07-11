@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "scripts": {
+    "lint": "tslint index.d.ts tests/*.ts",
+    "test": "tsc && npm run lint"
+  },
+  "devDependencies": {
+    "pg": "^6.0.2",
+    "tslint": "^3.10.2",
+    "tslint-config-typings": "^0.2.3",
+    "typescript": "^1.8.10",
+    "typings": "^1.3.1"
+  }
+}

@@ -12,7 +12,6 @@
     "typings/index.d.ts",
     "index.d.ts",
     "tests/client.ts",
-    "tests/common.ts",
     "tests/defaults.ts",
     "tests/pool.ts",
     "tests/query.ts",

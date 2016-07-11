@@ -1,7 +1,6 @@
-import { EventEmitter } from "events"
-import { Writable, Readable } from "stream"
-import { TlsOptions } from "tls"
-import * as PgPool from "pg-pool"
+import { EventEmitter } from 'events';
+import { TlsOptions } from 'tls';
+import * as PgPool from 'pg-pool';
 
 type ClientConstructor = new (connection: string | Config) => Client;
 type QueryCallback = (err: Error, result: ResultSet) => void;
@@ -46,23 +45,20 @@ interface ResultBuilder {
   addRow(row: any): void;
 }
 
-export class Pool extends PgPool
-{
-
-}
+export {PgPool as Pool};
 
 export class Query extends EventEmitter {
   text: string;
   values: any[];
 
-  on(event: "row", listener: (row: any, result: ResultBuilder) => void): this;
-  on(event: "end", listener: (result: ResultBuilder) => void): this;
-  on(event: "error", listener: (err: Error) => void): this;
+  on(event: 'row', listener: (row: any, result: ResultBuilder) => void): this;
+  on(event: 'end', listener: (result: ResultBuilder) => void): this;
+  on(event: 'error', listener: (err: Error) => void): this;
   on(event: string, listener: Function): this;
 }
 
 export class Client extends EventEmitter {
-  constructor(config?: ClientConstructor);
+  constructor(config?: string | Config);
 
   user: string;
   database: string;
@@ -83,10 +79,10 @@ export class Client extends EventEmitter {
   pauseDrain(): void;
   resumeDrain(): void;
 
-  on(event: "drain", listener: () => void): this;
-  on(event: "error", listener: (err: Error) => void): this;
-  on(event: "notification", listener: (message: any) => void): this;
-  on(event: "notice", listener: (message: any) => void): this;
+  on(event: 'drain', listener: () => void): this;
+  on(event: 'error', listener: (err: Error) => void): this;
+  on(event: 'notification', listener: (message: any) => void): this;
+  on(event: 'notice', listener: (message: any) => void): this;
   on(event: string, listener: Function): this;
 }
 
