@@ -1,6 +1,6 @@
 import { EventEmitter } from 'events';
 import { TlsOptions } from 'tls';
-import * as PgPool from 'pg-pool';
+import Pool = require('pg-pool');
 
 type ClientConstructor = new (connection: string | Config) => Client;
 type QueryCallback = (err: Error, result: ResultSet) => void;
@@ -45,8 +45,6 @@ interface ResultBuilder {
   addRow(row: any): void;
 }
 
-export {PgPool as Pool};
-
 export class Query extends EventEmitter {
   text: string;
   values: any[];
@@ -86,7 +84,9 @@ export class Client extends EventEmitter {
   on(event: string, listener: Function): this;
 }
 
+export { Pool }
 export var defaults: Config;
+
 export namespace types {
   /**
    * returns a function used to convert a specific type (specified by oid) into a result javascript type

@@ -13,7 +13,7 @@
   "url": "https://github.com/goenning/typed-pg/",
   "license": "MIT",
   "dependencies": {
-    "pg-pool": "github:typed-typings/npm-pg-pool#469bbe9cec98e4a80f1a9e602c6c93dd2be13590"
+    "pg-pool": "github:typed-typings/npm-pg-pool#38b355f3f6f0e64868b58c39aadff2d397ef6864"
   },
   "devDependencies": {},
   "globalDependencies": {
