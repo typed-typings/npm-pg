@@ -1,7 +1,26 @@
-import * as pg from "../index.d"
+import * as pg from '../index.d';
 
-var conn1 = new pg.Client("postgres://...")
-var query1 = conn1.query("", function(err, result) {
+// instantiate a new client
+// the client will read connection information from
+// the same environment varaibles used by postgres cli tools
+const client = new pg.Client();
 
-})
-pg.cancel({}, conn1, query1)
+// connect to our database
+client.connect(function (err) {
+  if (err) {
+    throw err;
+  }
+
+  // execute a query on our database
+  client.query('SELECT $1::text as name', ['brianc'], function (queryErr, result) {
+    if (err) {
+      throw err;
+    }
+
+    // just print the result to the console
+    console.log(result.rows[0]); // outputs: { name: 'brianc' }
+
+    // disconnect the client
+    client.end();
+  });
+});

@@ -1,23 +1,12 @@
-import { EventEmitter } from "events"
-import { Writable, Readable } from "stream"
-import { Pool } from "generic-pool"
-import { TlsOptions } from "tls"
+import { EventEmitter } from 'events';
+import { TlsOptions } from 'tls';
+import Pool = require('pg-pool');
 
-interface QueryCallback {
-  (err: Error, result: ResultSet): void;
-}
-
-interface ClientConnectCallback {
-  (err: Error, client: Client): void;
-}
-
-interface ConnectCallback {
-  (err: Error, client: Client, done: Done): void;
-}
-
-interface Done {
-  (): void;
-}
+type ClientConstructor = new (connection: string | Config) => Client;
+type QueryCallback = (err: Error, result: ResultSet) => void;
+type ClientConnectCallback = (err: Error, client: Client) => void;
+type ConnectCallback = (err: Error, client: Client, done: DoneCallback) => void;
+type DoneCallback = () => void;
 
 interface ResultSet {
   rows: any[];
@@ -42,7 +31,7 @@ interface Config {
   reapIntervalMillis?: number;
   poolLog?: boolean;
   client_encoding?: string;
-  ssl?: TlsOptions;
+  ssl?: boolean | TlsOptions;
   application_name?: string;
   fallback_application_name?: string;
   parseInputDatesAsUTC?: boolean;
@@ -56,35 +45,18 @@ interface ResultBuilder {
   addRow(row: any): void;
 }
 
-export interface PoolSet {
-  all: { [key: string]: ClientPool },
-  getOrCreate(config: Config): ClientPool,
-  getOrCreate(connString: string): ClientPool
-}
-
-export interface ClientPool extends Pool<Client> {
-  name: string;
-  max: number;
-  idleTimeoutMillis: number;
-  reapIntervalMillis: number;
-  log: boolean;
-  create(cb: ClientConnectCallback): void;
-  destroy(client: Client): void;
-}
-
 export class Query extends EventEmitter {
   text: string;
   values: any[];
 
-  on(event: "row", listener: (row: any, result: ResultBuilder) => void): this;
-  on(event: "end", listener: (result: ResultBuilder) => void): this;
-  on(event: "error", listener: (err: Error) => void): this;
+  on(event: 'row', listener: (row: any, result: ResultBuilder) => void): this;
+  on(event: 'end', listener: (result: ResultBuilder) => void): this;
+  on(event: 'error', listener: (err: Error) => void): this;
   on(event: string, listener: Function): this;
 }
 
 export class Client extends EventEmitter {
-  constructor(connString: string);
-  constructor(config: Config);
+  constructor(config?: string | Config);
 
   user: string;
   database: string;
@@ -99,21 +71,22 @@ export class Client extends EventEmitter {
   query(text: string, callback: QueryCallback): Query;
   query(text: string, values: any[], callback: QueryCallback): Query;
 
-  connect(callback: ClientConnectCallback): void;
+  connect(callback?: ClientConnectCallback): void;
   end(): void;
 
   pauseDrain(): void;
   resumeDrain(): void;
 
-  on(event: "drain", listener: () => void): this;
-  on(event: "error", listener: (err: Error) => void): this;
-  on(event: "notification", listener: (message: any) => void): this;
-  on(event: "notice", listener: (message: any) => void): this;
+  on(event: 'drain', listener: () => void): this;
+  on(event: 'error', listener: (err: Error) => void): this;
+  on(event: 'notification', listener: (message: any) => void): this;
+  on(event: 'notice', listener: (message: any) => void): this;
   on(event: string, listener: Function): this;
 }
 
+export { Pool }
 export var defaults: Config;
-export var pools: PoolSet;
+
 export namespace types {
   /**
    * returns a function used to convert a specific type (specified by oid) into a result javascript type
@@ -124,6 +97,3 @@ export namespace types {
   export function setTypeParser(oid: number, format: 'text' | 'binary', parseFn: (value: string) => any);
   export function setTypeParser(oid: number, parseFn: (value: string) => any);
 }
-export function connect(connString: string, callback: ConnectCallback): void;
-export function end(): void;
-export function cancel(config: Config, client: Client, query: Query): void;
