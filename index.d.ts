@@ -2,23 +2,23 @@ import { EventEmitter } from 'events';
 import { TlsOptions } from 'tls';
 import Pool = require('pg-pool');
 
-type ClientConstructor = new (connection: string | Config) => Client;
-type QueryCallback = (err: Error, result: ResultSet) => void;
-type ClientConnectCallback = (err: Error, client: Client) => void;
-type ConnectCallback = (err: Error, client: Client, done: DoneCallback) => void;
-type DoneCallback = () => void;
+export type ClientConstructor = new (connection: string | Config) => Client;
+export type QueryCallback = (err: Error, result: ResultSet) => void;
+export type ClientConnectCallback = (err: Error, client: Client) => void;
+export type ConnectCallback = (err: Error, client: Client, done: DoneCallback) => void;
+export type DoneCallback = () => void;
 
-interface ResultSet {
+export interface ResultSet {
   rows: any[];
 }
 
-interface QueryConfig {
+export interface QueryConfig {
   name?: string;
   text: string;
   values?: any[];
 }
 
-interface Config {
+export interface Config {
   host?: string;
   user?: string;
   database?: string;
@@ -37,7 +37,7 @@ interface Config {
   parseInputDatesAsUTC?: boolean;
 }
 
-interface ResultBuilder {
+export interface ResultBuilder {
   command: string;
   rowCount: number;
   oid: number;
