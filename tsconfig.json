@@ -9,7 +9,6 @@
     "tests/*.ts"
   ],
   "files": [
-    "typings/index.d.ts",
     "index.d.ts",
     "tests/client.ts",
     "tests/defaults.ts",

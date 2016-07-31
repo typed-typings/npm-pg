@@ -47,6 +47,7 @@ export interface ResultBuilder {
 
 export class Query extends EventEmitter {
   text: string;
+  rows: { [column: string]: any }[];
   values: any[];
 
   on(event: 'row', listener: (row: any, result: ResultBuilder) => void): this;
@@ -68,8 +69,8 @@ export class Client extends EventEmitter {
   ssl: boolean;
 
   query(query: QueryConfig, callback?: QueryCallback): Query;
-  query(text: string, callback: QueryCallback): Query;
-  query(text: string, values: any[], callback: QueryCallback): Query;
+  query(text: string, callback?: QueryCallback): Query;
+  query(text: string, values: any[], callback?: QueryCallback): Query;
 
   connect(callback?: ClientConnectCallback): void;
   end(): void;
@@ -93,7 +94,7 @@ export namespace types {
    * note: the oid can be obtained via the following sql query:
    * `SELECT oid FROM pg_type WHERE typname = 'TYPE_NAME_HERE';`
    */
-  export function getTypeParser(oid: number, format?: 'text' | 'binary');
-  export function setTypeParser(oid: number, format: 'text' | 'binary', parseFn: (value: string) => any);
-  export function setTypeParser(oid: number, parseFn: (value: string) => any);
+  export function getTypeParser(oid: number, format?: 'text' | 'binary'):any;
+  export function setTypeParser(oid: number, format: 'text' | 'binary', parseFn: (value: string) => any):void;
+  export function setTypeParser(oid: number, parseFn: (value: string) => any):void;
 }
