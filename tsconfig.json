@@ -10,6 +10,7 @@
   ],
   "files": [
     "index.d.ts",
+    "typings/index.d.ts",
     "tests/client.ts",
     "tests/defaults.ts",
     "tests/pool.ts",
