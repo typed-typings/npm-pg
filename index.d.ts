@@ -88,13 +88,24 @@ export class Client extends EventEmitter {
 export { Pool }
 export var defaults: Config;
 
+/**
+ * The following functions are used to convert a textual or binary
+ * representation of a PostgreSQL result value into a JavaScript type.
+ *
+ * The oid can be obtained via the following sql query:
+ *   `SELECT oid FROM pg_type WHERE typname = 'TYPE_NAME_HERE';`
+ */
 export namespace types {
-  /**
-   * returns a function used to convert a specific type (specified by oid) into a result javascript type
-   * note: the oid can be obtained via the following sql query:
-   * `SELECT oid FROM pg_type WHERE typname = 'TYPE_NAME_HERE';`
-   */
-  export function getTypeParser(oid: number, format?: 'text' | 'binary'):any;
-  export function setTypeParser(oid: number, format: 'text' | 'binary', parseFn: (value: string) => any):void;
-  export function setTypeParser(oid: number, parseFn: (value: string) => any):void;
+  type TypeParserText = (value: string) => any;
+  type TypeParserBinary = (value: Buffer) => any;
+
+  export function getTypeParser(oid: number, format: 'text' | 'binary'): TypeParserText | TypeParserBinary;
+  export function setTypeParser(oid: number, format: 'text' | 'binary', parseFn: TypeParserText | TypeParserBinary): void;
+
+  export function getTypeParser(oid: number, format?: 'text'): TypeParserText;
+  export function setTypeParser(oid: number, format: 'text', parseFn: TypeParserText): void;
+  export function setTypeParser(oid: number, parseFn: TypeParserText): void;
+
+  export function getTypeParser(oid: number, format: 'binary'): TypeParserBinary;
+  export function setTypeParser(oid: number, format: 'binary', parseFn: TypeParserBinary): void;
 }
