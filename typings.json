@@ -1,6 +1,7 @@
 {
   "name": "pg",
   "main": "index.d.ts",
+  "version": "6.0.2",
   "author": "goenning <oenning.ti@gmail.com>",
   "homepage": "https://github.com/brianc/node-postgres",
   "dependencies": {
@@ -8,6 +9,6 @@
   },
   "devDependencies": {},
   "globalDependencies": {
-    "node": "registry:env/node#4.0.0+20160622202520"
+    "node": "registry:env/node#6.0.0+20160723033700"
   }
 }
