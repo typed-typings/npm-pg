@@ -1,6 +1,8 @@
 {
   "extends": "tslint-config-typings",
   "rules": {
-    "no-console": 0
+    "no-console": [
+      false
+    ]
   }
 }
