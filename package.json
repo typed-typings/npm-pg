@@ -1,14 +1,23 @@
 {
-  "private": true,
+  "name": "@types/pg",
+  "version": "6.0.2",
+  "description": "Types for https://github.com/brianc/node-postgres",
+  "typings": "index.d.ts",
+  "author": "goenning <oenning.ti@gmail.com>",
+  "license": "MIT",
   "scripts": {
     "lint": "tslint index.d.ts tests/*.ts",
-    "test": "tsc && npm run lint"
+    "exec": "tsc",
+    "test": "npm run lint && npm run exec",
+    "prepublish": "typings install",
+    "postpublish": "greenkeeper-postpublish"
   },
   "devDependencies": {
+    "greenkeeper-postpublish": "^1.0.1",
     "pg": "^6.0.2",
-    "tslint": "^3.10.2",
-    "tslint-config-typings": "^0.2.3",
-    "typescript": "^1.8.10",
-    "typings": "^1.3.1"
+    "tslint": "^4.0.2",
+    "tslint-config-typings": "^0.3.1",
+    "typescript": "^2.0.10",
+    "typings": "^2.0.0"
   }
 }

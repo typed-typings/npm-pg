@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import { TlsOptions } from 'tls';
+import { ConnectOptions } from 'tls';
 import Pool = require('pg-pool');
 
 export type ClientConstructor = new (connection: string | Config) => Client;
@@ -31,7 +31,7 @@ export interface Config {
   reapIntervalMillis?: number;
   poolLog?: boolean;
   client_encoding?: string;
-  ssl?: boolean | TlsOptions;
+  ssl?: boolean | ConnectOptions;
   application_name?: string;
   fallback_application_name?: string;
   parseInputDatesAsUTC?: boolean;
@@ -86,7 +86,7 @@ export class Client extends EventEmitter {
 }
 
 export { Pool }
-export var defaults: Config;
+export const defaults: Config;
 
 /**
  * The following functions are used to convert a textual or binary
@@ -98,9 +98,6 @@ export var defaults: Config;
 export namespace types {
   type TypeParserText = (value: string) => any;
   type TypeParserBinary = (value: Buffer) => any;
-
-  export function getTypeParser(oid: number, format: 'text' | 'binary'): TypeParserText | TypeParserBinary;
-  export function setTypeParser(oid: number, format: 'text' | 'binary', parseFn: TypeParserText | TypeParserBinary): void;
 
   export function getTypeParser(oid: number, format?: 'text'): TypeParserText;
   export function setTypeParser(oid: number, format: 'text', parseFn: TypeParserText): void;

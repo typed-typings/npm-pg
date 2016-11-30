@@ -7,8 +7,7 @@
   "dependencies": {
     "pg-pool": "registry:npm/pg-pool#1.3.1+20160723033700"
   },
-  "devDependencies": {},
   "globalDependencies": {
-    "node": "registry:env/node#6.0.0+20160723033700"
+    "node": "registry:env/node#6.0.0+20161105011511"
   }
 }
