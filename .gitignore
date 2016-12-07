@@ -2,3 +2,4 @@ typings/
 .git
 .DS_Store
 node_modules
+bundle.d.ts

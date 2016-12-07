@@ -1,28 +1,19 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "noEmit": true
+    "module": "commonjs",
+    "noEmit": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true
   },
-  "filesGlob": [
-    "typings/index.d.ts",
-    "index.d.ts",
-    "tests/*.ts"
-  ],
   "files": [
     "index.d.ts",
+    "bundle.d.ts",
     "typings/index.d.ts",
     "tests/client.ts",
     "tests/defaults.ts",
     "tests/pool.ts",
     "tests/query.ts",
     "tests/types.ts"
-  ],
-  "formatCodeOptions": {
-    "indentSize": 2,
-    "tabSize": 2
-  },
-  "atom": {
-    "rewriteTsconfig": true,
-    "formatOnSave": true
-  }
+  ]
 }

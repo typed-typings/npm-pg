@@ -1,4 +1,4 @@
-import {types} from '../index.d';
+import {types} from 'pg';
 
 types.setTypeParser(20, function (val: string) {
   return parseInt(val);

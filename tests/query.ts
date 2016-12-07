@@ -1,4 +1,4 @@
-import * as pg from '../index.d';
+import * as pg from 'pg';
 
 let conn2 = new pg.Client({ host: 'localhost', user: '', password: '' });
 let query2 = conn2.query({ name: 'getAlls', text: 'SELECT * FROM person' });

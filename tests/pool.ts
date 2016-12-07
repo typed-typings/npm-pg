@@ -1,4 +1,4 @@
-import * as pg from '../index.d';
+import * as pg from 'pg';
 // call `done()` to release the client back to the pool
 
 // create a config to configure both pooling behavior
@@ -38,7 +38,7 @@ pool.connect(function(err, client, done) {
   });
 });
 
-pool.on('error', function (err, client) {
+pool.on('error', function (err: Error, client: pg.Client) {
   // if an error is encountered by a client while it sits idle in the pool
   // the pool itself will emit an error event with both the error and
   // the client which emitted the original error

@@ -8,7 +8,8 @@
   "scripts": {
     "lint": "tslint index.d.ts tests/*.ts",
     "exec": "tsc",
-    "test": "npm run lint && npm run exec",
+    "test": "npm run lint && npm run bundle && npm run exec",
+    "bundle": "typings bundle -o bundle.d.ts",
     "prepublish": "typings install",
     "postpublish": "greenkeeper-postpublish"
   },
@@ -17,7 +18,7 @@
     "pg": "^6.0.2",
     "tslint": "^4.0.2",
     "tslint-config-typings": "^0.3.1",
-    "typescript": "^2.0.10",
+    "typescript": "^2.1.4",
     "typings": "^2.0.0"
   }
 }

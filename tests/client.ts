@@ -1,4 +1,4 @@
-import * as pg from '../index.d';
+import * as pg from 'pg';
 
 // instantiate a new client
 // the client will read connection information from

@@ -1,4 +1,4 @@
-import * as pg from '../index.d';
+import * as pg from 'pg';
 
 pg.defaults.poolSize = 25;
 pg.defaults.host = '';
