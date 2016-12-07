@@ -10,7 +10,7 @@ script:
   - npm run test
 
 env:
-  - TYPESCRIPT=typescript@1.8
+  - TYPESCRIPT=typescript@2.0
   - TYPESCRIPT=typescript@latest
   - TYPESCRIPT=typescript@next
 
