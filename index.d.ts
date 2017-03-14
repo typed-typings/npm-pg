@@ -6,7 +6,7 @@ export type ClientConstructor = new (connection: string | Config) => Client;
 export type QueryCallback = (err: Error, result: ResultSet) => void;
 export type ClientConnectCallback = (err: Error, client: Client) => void;
 export type ConnectCallback = (err: Error, client: Client, done: DoneCallback) => void;
-export type DoneCallback = () => void;
+export type DoneCallback = (err?: Error) => void;
 
 export interface ResultSet {
   rows: any[];
