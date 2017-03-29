@@ -85,7 +85,7 @@ export class Client extends EventEmitter {
   on(event: string, listener: Function): this;
 }
 
-export { Pool }
+export { Pool };
 export const defaults: Config;
 
 /**
